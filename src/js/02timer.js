@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const refs = {
   input: document.querySelector('#datetime-picker'),
@@ -18,15 +19,16 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
   onClose(selectedDates) {
-    console.log(selectedDates[0]);
+    // console.log(selectedDates[0]);
     if (Date.now() > selectedDates[0].getTime()) {
       refs.startBtn.disabled = true;
-      window.alert('Please choose a date in the future');
+      Notiflix.Notify.failure('Please choose a date in the future');
+      // window.alert('Please choose a date in the future');
       return;
     }
     refs.startBtn.disabled = false;
     currentDate = selectedDates[0].getTime();
-    console.log(currentDate);
+    // console.log(currentDate);
   },
 };
 
@@ -68,7 +70,7 @@ const timer = {
   start() {
     timerId = setInterval(() => {
       const nowDate = Date.now();
-      console.log('Hi');
+      // console.log('Hi');
       if (currentDate >= nowDate) {
         const deltaTime = currentDate - nowDate;
         const { days, hours, minutes, seconds } = convertMs(deltaTime);

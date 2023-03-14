@@ -20,6 +20,7 @@ function createPromise(position, delay) {
   });
 }
 
+
 refs.createPromisesBtn.addEventListener('click', onSubmitBtn);
 
 function onSubmitBtn(evt) {

@@ -7,9 +7,6 @@ const refs = {
   createPromisesBtn: document.querySelector('button'),
   form: document.querySelector('.form'),
 };
-let delayNumber = null;
-let stepNumber = null;
-let amountNumber = null;
 function createPromise(position, delay) {
   return new Promise((resolve, reject) => {
     timerStepId = setInterval(() => {
@@ -27,9 +24,9 @@ refs.createPromisesBtn.addEventListener('click', onSubmitBtn);
 
 function onSubmitBtn(evt) {
   evt.preventDefault();
-  delayNumber = +refs.inputDelay.value;
-  stepNumber = +refs.inputStep.value;
-  amountNumber = +refs.inputAmount.value;
+  let delayNumber = +refs.inputDelay.value;
+  const stepNumber = +refs.inputStep.value;
+  const amountNumber = +refs.inputAmount.value;
 
   for (let i = 1; i <= amountNumber; i += 1) {
     createPromise(i, delayNumber)
@@ -43,7 +40,7 @@ function onSubmitBtn(evt) {
           `❌ Rejected promise ${position} in ${delay}ms`
         );
       });
-      delayNumber += stepNumber;
+    delayNumber += stepNumber;
   }
   refs.form.reset();
 }
